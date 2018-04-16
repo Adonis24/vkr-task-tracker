@@ -1,0 +1,23 @@
+{
+  "name": "vkr-task-tracker",
+  "version": "1.0.0",
+  "description": "Диплом",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-buhar0v/vkr-task-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s-buhar0v/vkr-task-tracker/issues"
+  },
+  "homepage": "https://github.com/s-buhar0v/vkr-task-tracker#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
