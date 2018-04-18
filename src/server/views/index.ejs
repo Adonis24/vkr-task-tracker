@@ -1,13 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/styles.css">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive Admin Dashboard Template">
+    <meta name="keywords" content="admin,dashboard">
+    <meta name="author" content="stacks">
+
+    <title>Space - Responsive Admin Dashboard Template</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="static/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/plugins/icomoon/style.css" rel="stylesheet">
+    <link href="static/plugins/uniform/css/default.css" rel="stylesheet" />
+    <link href="static/plugins/switchery/switchery.min.css" rel="stylesheet" />
+
+    <link href="static/css/space.min.css" rel="stylesheet">
+    <link href="static/css/custom.css" rel="stylesheet">
 </head>
+
 <body>
-    
+
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- Page Sidebar -->
+        <div class="page-sidebar">
+            <a class="logo-box" href="index.html">
+                <span>Space</span>
+                <i class="icon-close" id="sidebar-toggle-button-close"></i>
+            </a>
+            <div class="page-sidebar-inner">
+                <div class="page-sidebar-menu">
+                    <ul class="accordion-menu">
+                        <li>
+                            <a href="index.html">
+                                <i class="menu-icon icon-home4"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="email.html">
+                                <i class="menu-icon icon-inbox"></i>
+                                <span>Email</span>
+                            </a>
+                        </li>
+                        <li class="menu-divider"></li>
+                        <li>
+                            <a href="index.html">
+                                <i class="menu-icon icon-help_outline"></i>
+                                <span>Documentation</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Sidebar -->
+
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <div class="logo-sm">
+                                <a href="javascript:void(0)" id="sidebar-toggle-button">
+                                    <i class="fa fa-bars"></i>
+                                </a>
+                                <a class="logo-box" href="index.html">
+                                    <span>Space</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="javascript:void(0)" id="collapsed-sidebar-toggle-button">
+                                        <i class="fa fa-bars"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" id="toggle-fullscreen">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown user-dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <img src="http://via.placeholder.com/36x36" alt="" class="img-circle">
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="#">Profile</a>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <a href="#">Log Out</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </div>
+            <!-- /Page Header -->
+            <!-- Page Inner -->
+            <div class="page-inner">
+                <div class="page-title">
+                    <h3 class="breadcrumb-header">Blank Page</h3>
+                </div>
+                <div id="main-wrapper">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3>Задачи</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%plannedTasks.forEach(task => {%>
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="panel-body">
+                                                    <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+                                                        <div class="panel panel-primary">
+                                                            <div class="panel-heading" role="tab" id="headingOne1">
+                                                                <h4 class="panel-title">
+                                                                    <a data-toggle="collapse" data-parent="#accordion2" href="#1" aria-expanded="true" aria-controls="collapseOne">
+                                                                        <%=task.title%>
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div id="1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne1">
+                                                                <div class="panel-body">
+                                                                    <%=task.description%>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <%})%>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="col-md-4">
+                            <h3>В процессе</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%inProgressTasks.forEach(task => {%>
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="panel-body">
+                                                    <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+                                                        <div class="panel panel-primary">
+                                                            <div class="panel-heading" role="tab" id="headingOne1">
+                                                                <h4 class="panel-title">
+                                                                    <a data-toggle="collapse" data-parent="#accordion2" href="#1" aria-expanded="true" aria-controls="collapseOne">
+                                                                        <%=task.title%>
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div id="1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne1">
+                                                                <div class="panel-body">
+                                                                    <%=task.description%>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <%})%>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Готово</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%finishedTasks.forEach(task => {%>
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="panel-body">
+                                                    <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+                                                        <div class="panel panel-primary">
+                                                            <div class="panel-heading" role="tab" id="headingOne1">
+                                                                <h4 class="panel-title">
+                                                                    <a data-toggle="collapse" data-parent="#accordion2" href="#1" aria-expanded="true" aria-controls="collapseOne">
+                                                                        <%=task.title%>
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div id="1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne1">
+                                                                <div class="panel-body">
+                                                                    <%=task.description%>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <%})%>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/plugins/jquery/jquery-3.1.0.min.js"></script>
+    <script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/static/plugins/uniform/js/jquery.uniform.standalone.js"></script>
+    <script src="static/plugins/switchery/switchery.min.js"></script>
+    <script src="static/js/space.min.js"></script>
 </body>
+
 </html>
