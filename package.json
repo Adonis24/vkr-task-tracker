@@ -19,6 +19,7 @@
   "homepage": "https://github.com/s-buhar0v/vkr-task-tracker#readme",
   "dependencies": {
     "ejs": "^2.5.8",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mongoose": "^5.0.15"
   }
 }
