@@ -1,15 +1,7 @@
 const Task = require('../models/task')
 
-async function getPlannedTasks() {
-    return await Task.find({ status: 'todo' })
-}
-
-async function getInProgressTasks() {
-    return await Task.find({ status: 'wip' })
-}
-
-async function getFinishedTasks() {
-    return await Task.find({ status: 'done' })
+async function getTaskByStatus(status) {
+    return await Task.find({ status: status })
 }
 
 async function addTask(task) {
@@ -23,8 +15,16 @@ async function addTask(task) {
     await newTask.save()
 }
 
+async function setTaskStatus(id, status) {
+    return await Task.findByIdAndUpdate(id, { status: status })
+}
 
-module.exports.getPlannedTasks = getPlannedTasks
-module.exports.getInProgressTasks = getInProgressTasks
-module.exports.getFinishedTasks = getFinishedTasks
+async function removeTask(id) {
+    return await Task.findByIdAndRemove(id)
+}
+
+
+module.exports.getTaskByStatus = getTaskByStatus
 module.exports.addTask = addTask
+module.exports.setTaskStatus = setTaskStatus
+module.exports.removeTask = removeTask

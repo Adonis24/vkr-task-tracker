@@ -2,25 +2,26 @@ const mongoose = require('mongoose')
 
 const config = require('./config')
 const Task = require('./src/models/task')
+const taskStatus = require('./src/resources/task-status')
 
 mongoose.connect(config.connectionString)
 
 const plannedTask = new Task({
     title: 'Прогрев сайтов',
     description: 'preloadEnabled / Always Running / App Init для самопрогрева',
-    status: 'todo'
+    status: taskStatus.todo
 })
 
 const inProgressTask = new Task({
     title: 'Переехать на новые NGINX (nginx-ext-1/2)',
     description: 'Убрать все метрики из prometheus',
-    status: 'wip'
+    status: taskStatus.wip
 })
 
 const finishedTask = new Task({
     title: 'API для MessageService ',
     description: 'Appservice не должен иметь доступ к БД',
-    status: 'done'
+    status: taskStatus.done
 })
 
 plannedTask.save()
