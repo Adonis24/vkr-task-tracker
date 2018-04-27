@@ -126,12 +126,16 @@
                             <div class="col-md-3">
                                 <div class="panel panel-white">
                                     <div class="panel-heading clearfix">
-                                        <h4 class="panel-title">User Profile</h4>
+                                        <h4 class="panel-title">Сотрудник</h4>
                                     </div>
                                     <div class="panel-body user-profile-panel">
-                                        <img src="http://via.placeholder.com/100x100" class="user-profile-image img-circle" alt="">
-                                        <h4 class="text-center m-t-lg"><%=employee.lastName%> <%=employee.firstName%></h4>
-                                        <p class="text-center"><%=employee.position%></p>
+                                        <h4 class="text-center m-t-lg">
+                                            <%=employee.lastName%>
+                                                <%=employee.firstName%>
+                                        </h4>
+                                        <p class="text-center">
+                                            <%=employee.position%>
+                                        </p>
                                         <hr>
                                         <ul class="list-unstyled text-center">
                                             <li>
@@ -142,12 +146,6 @@
                                                 <p>
                                                     <i class="fa fa-paper-plane-o m-r-xs"></i>
                                                     <a href="#">example@mail.com</a>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p>
-                                                    <i class="fa fa-link m-r-xs"></i>
-                                                    <a href="#">www.themeforest.net</a>
                                                 </p>
                                             </li>
                                         </ul>
@@ -193,35 +191,6 @@
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor
                                                             mi eget laoreet auctor. Proin dictum nulla id augue aliquam,
                                                             vitae condimentum erat imperdiet</p>
-                                                        <div class="timeline-options">
-                                                            <a href="#">
-                                                                <i class="fa fa-thumbs-up"></i> Like (7)</a>
-                                                            <a href="#">
-                                                                <i class="fa fa-comment"></i> Comment (2)</a>
-                                                            <a href="#">
-                                                                <i class="fa fa-share"></i> Share (3)</a>
-                                                        </div>
-                                                        <div class="timeline-comment">
-                                                            <div class="timeline-comment-header">
-                                                                <img src="http://via.placeholder.com/30x30" alt="">
-                                                                <p>ethan green
-                                                                    <small>1 hour ago</small>
-                                                                </p>
-                                                            </div>
-                                                            <p class="timeline-comment-text">Aenean tincidunt mi ut leo auctor, eleifend molestie erat vulputate</p>
-                                                        </div>
-                                                        <div class="timeline-comment">
-                                                            <div class="timeline-comment-header">
-                                                                <img src="http://via.placeholder.com/30x30" alt="">
-                                                                <p>john doe
-                                                                    <small>3 hours ago</small>
-                                                                </p>
-                                                            </div>
-                                                            <p class="timeline-comment-text">Nam non libero sem. Nullam commodo tellus quis massa pulvinar,
-                                                                sed blandit tortor tincidunt. Nulla consequat at nisi sit
-                                                                amet consectetur</p>
-                                                        </div>
-                                                        <textarea class="form-control" placeholder="Replay"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -229,6 +198,24 @@
                                         <li class="timeline-item">
                                             <div class="panel panel-white">
                                                 <div class="panel-body">
+                                                    <div class="panel-body">
+                                                        <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+                                                            <div class="panel panel-primary">
+                                                                <div class="panel-heading" role="tab" id="headingOne1">
+                                                                    <h4 class="panel-title">
+                                                                        <a data-toggle="collapse" data-parent="#accordion2" href="#1" aria-expanded="true" aria-controls="collapseOne">
+                                                                            %=task.title%>
+                                                                        </a>
+                                                                    </h4>
+                                                                </div>
+                                                                <div id="1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne1">
+                                                                    <div class="panel-body">
+                                                                        %=task.description%>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="timeline-item-header">
                                                         <img src="http://via.placeholder.com/40x40" alt="">
                                                         <p>david smith
@@ -293,7 +280,8 @@
                                     <div class="panel-body">
                                         <p>Integer tincidunt varius nulla, vitae facilisis nibh ornare dignissim. Morbi in orci
                                             vitae magna vestibulum placerat at vel augue. Pellentesque rutrum ipsum eget
-                                            odio</p>
+                                            odio
+                                        </p>
                                     </div>
                                 </div>
                             </div>
