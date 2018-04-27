@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 
 const config = require('../../config')
 const taskRepository = require('../repositories/tasks-repository')
+const employeeRepository = require('../repositories/empoloyeeRepository')
 const taskStatus = require('../resources/task-status')
 
 const task = require('./routes/task')
@@ -37,7 +38,10 @@ app.get('/', async (request, response) => {
 })
 
 app.get('/employee', async (request, response) => {
-    response.render('employee')
+    const employeeId = request.query.id
+    const employee = await employeeRepository.getEmployee(employeeId)
+
+    response.render('employee', { employee: employee })
 })
 
 app.listen(port, () => {

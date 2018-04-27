@@ -10,3 +10,10 @@ async function addEmployee(employee) {
 
     return await newEmployee.save()
 }
+
+async function getEmployee(id) {
+    return await Employee.findById(id)
+}
+
+module.exports.addEmployee = addEmployee
+module.exports.getEmployee = getEmployee
