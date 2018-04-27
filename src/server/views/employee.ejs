@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive Admin Dashboard Template">
+    <meta name="keywords" content="admin,dashboard">
+    <meta name="author" content="stacks">
+
+    <title>Space - Responsive Admin Dashboard Template</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="static/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/plugins/icomoon/style.css" rel="stylesheet">
+    <link href="static/plugins/uniform/css/default.css" rel="stylesheet" />
+    <link href="static/plugins/switchery/switchery.min.css" rel="stylesheet" />
+
+    <link href="static/css/space.min.css" rel="stylesheet">
+    <link href="static/css/custom.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- Page Sidebar -->
+        <div class="page-sidebar">
+            <a class="logo-box" href="index.html">
+                <span>Space</span>
+                <i class="icon-close" id="sidebar-toggle-button-close"></i>
+            </a>
+            <div class="page-sidebar-inner">
+                <div class="page-sidebar-menu">
+                    <ul class="accordion-menu">
+                        <li>
+                            <a href="index.html">
+                                <i class="menu-icon icon-home4"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="email.html">
+                                <i class="menu-icon icon-inbox"></i>
+                                <span>Email</span>
+                            </a>
+                        </li>
+                        <li class="menu-divider"></li>
+                        <li>
+                            <a href="index.html">
+                                <i class="menu-icon icon-help_outline"></i>
+                                <span>Documentation</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Sidebar -->
+
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <div class="logo-sm">
+                                <a href="javascript:void(0)" id="sidebar-toggle-button">
+                                    <i class="fa fa-bars"></i>
+                                </a>
+                                <a class="logo-box" href="index.html">
+                                    <span>Space</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="javascript:void(0)" id="collapsed-sidebar-toggle-button">
+                                        <i class="fa fa-bars"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" id="toggle-fullscreen">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown user-dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <img src="http://via.placeholder.com/36x36" alt="" class="img-circle">
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="#">Profile</a>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <a href="#">Log Out</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </div>
+            <!-- /Page Header -->
+            <!-- Page Inner -->
+            <div class="page-inner">
+                <div class="page-title">
+                </div>
+                <div id="main-wrapper">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="panel panel-white">
+                                    <div class="panel-heading clearfix">
+                                        <h4 class="panel-title">User Profile</h4>
+                                    </div>
+                                    <div class="panel-body user-profile-panel">
+                                        <img src="http://via.placeholder.com/100x100" class="user-profile-image img-circle" alt="">
+                                        <h4 class="text-center m-t-lg">john doe</h4>
+                                        <p class="text-center">UI/UX Designer</p>
+                                        <hr>
+                                        <ul class="list-unstyled text-center">
+                                            <li>
+                                                <p>
+                                                    <i class="fa fa-map-marker m-r-xs"></i>Melbourne, Australia</p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    <i class="fa fa-paper-plane-o m-r-xs"></i>
+                                                    <a href="#">example@mail.com</a>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    <i class="fa fa-link m-r-xs"></i>
+                                                    <a href="#">www.themeforest.net</a>
+                                                </p>
+                                            </li>
+                                        </ul>
+                                        <hr>
+                                        <button class="btn btn-info btn-block">Follow</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="panel panel-white">
+                                    <div class="panel-body">
+                                        <div class="post">
+                                            <textarea class="form-control" placeholder="Post" rows="4"></textarea>
+                                            <div class="post-options">
+                                                <a href="#">
+                                                    <i class="fa fa-camera"></i>
+                                                </a>
+                                                <a href="#">
+                                                    <i class="fa fa-video-camera"></i>
+                                                </a>
+                                                <a href="#">
+                                                    <i class="fa fa-music"></i>
+                                                </a>
+                                                <button class="btn btn-default pull-right">Post</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="profile-timeline">
+                                    <ul class="list-unstyled">
+                                        <li class="timeline-item">
+                                            <div class="panel panel-white">
+                                                <div class="panel-body">
+                                                    <div class="timeline-item-header">
+                                                        <img src="http://via.placeholder.com/40x40" alt="">
+                                                        <p>jack smith
+                                                            <span>posted a status</span>
+                                                        </p>
+                                                        <small>3 hours ago</small>
+                                                    </div>
+                                                    <div class="timeline-item-post">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor
+                                                            mi eget laoreet auctor. Proin dictum nulla id augue aliquam,
+                                                            vitae condimentum erat imperdiet</p>
+                                                        <div class="timeline-options">
+                                                            <a href="#">
+                                                                <i class="fa fa-thumbs-up"></i> Like (7)</a>
+                                                            <a href="#">
+                                                                <i class="fa fa-comment"></i> Comment (2)</a>
+                                                            <a href="#">
+                                                                <i class="fa fa-share"></i> Share (3)</a>
+                                                        </div>
+                                                        <div class="timeline-comment">
+                                                            <div class="timeline-comment-header">
+                                                                <img src="http://via.placeholder.com/30x30" alt="">
+                                                                <p>ethan green
+                                                                    <small>1 hour ago</small>
+                                                                </p>
+                                                            </div>
+                                                            <p class="timeline-comment-text">Aenean tincidunt mi ut leo auctor, eleifend molestie erat vulputate</p>
+                                                        </div>
+                                                        <div class="timeline-comment">
+                                                            <div class="timeline-comment-header">
+                                                                <img src="http://via.placeholder.com/30x30" alt="">
+                                                                <p>john doe
+                                                                    <small>3 hours ago</small>
+                                                                </p>
+                                                            </div>
+                                                            <p class="timeline-comment-text">Nam non libero sem. Nullam commodo tellus quis massa pulvinar,
+                                                                sed blandit tortor tincidunt. Nulla consequat at nisi sit
+                                                                amet consectetur</p>
+                                                        </div>
+                                                        <textarea class="form-control" placeholder="Replay"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-item">
+                                            <div class="panel panel-white">
+                                                <div class="panel-body">
+                                                    <div class="timeline-item-header">
+                                                        <img src="http://via.placeholder.com/40x40" alt="">
+                                                        <p>david smith
+                                                            <span>uploaded a photo</span>
+                                                        </p>
+                                                        <small>7 hours ago</small>
+                                                    </div>
+                                                    <div class="timeline-item-post">
+                                                        <p>Aenean ante nunc, eleifend eget hendrerit eget</p>
+                                                        <img src="http://via.placeholder.com/500x300" alt="">
+                                                        <div class="timeline-options">
+                                                            <a href="#">
+                                                                <i class="fa fa-thumbs-up"></i> Like (12)</a>
+                                                            <a href="#">
+                                                                <i class="fa fa-comment"></i> Comment (1)</a>
+                                                            <a href="#">
+                                                                <i class="fa fa-share"></i> Share (6)</a>
+                                                        </div>
+                                                        <div class="timeline-comment">
+                                                            <div class="timeline-comment-header">
+                                                                <img src="http://via.placeholder.com/30x30" alt="">
+                                                                <p>noah smith
+                                                                    <small>1 hour ago</small>
+                                                                </p>
+                                                            </div>
+                                                            <p class="timeline-comment-text">Cras tempor pretium lorem, quis suscipit ipsum</p>
+                                                        </div>
+                                                        <textarea class="form-control" placeholder="Replay"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-white">
+                                    <div class="panel-heading clearfix">
+                                        <h4 class="panel-title">Suggestions</h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="team">
+                                            <div class="team-member">
+                                                <div class="online on"></div>
+                                                <img src="http://via.placeholder.com/40x40" alt="">
+                                            </div>
+                                            <div class="team-member">
+                                                <div class="online on"></div>
+                                                <img src="http://via.placeholder.com/40x40" alt="">
+                                            </div>
+                                            <div class="team-member">
+                                                <div class="online off"></div>
+                                                <img src="http://via.placeholder.com/40x40" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-white">
+                                    <div class="panel-heading clearfix">
+                                        <h4 class="panel-title">Some Info</h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p>Integer tincidunt varius nulla, vitae facilisis nibh ornare dignissim. Morbi in orci
+                                            vitae magna vestibulum placerat at vel augue. Pellentesque rutrum ipsum eget
+                                            odio</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Row -->
+                    </div>
+                </div>
+            </div>
+            <div class="page-footer">
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="/static/plugins/jquery/jquery-3.1.0.min.js"></script>
+    <script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/static/plugins/uniform/js/jquery.uniform.standalone.js"></script>
+    <script src="/static/plugins/switchery/switchery.min.js"></script>
+    <script src="/static/js/space.min.js"></script>
+    <script src="/static/js/pages/ui-modals.js"></script>
+</body>
+
+</html>

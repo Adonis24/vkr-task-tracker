@@ -1,7 +1,20 @@
 const Task = require('../models/task')
+const Employee = require('../models/employee')
 
 async function getTaskByStatus(status) {
-    return await Task.find({ status: status })
+    const tasks = await Task.find({ status: status })
+
+    const tasksWithEmployees = tasks.map(async (task) => {
+        const employee = await Employee.findById(task.employeeId)
+        return {
+            title: task.title,
+            description: task.description,
+            status: task.status,
+            employee: employee
+        }
+    })
+
+    return Promise.all(tasksWithEmployees)
 }
 
 async function addTask(task) {

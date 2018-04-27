@@ -36,6 +36,10 @@ app.get('/', async (request, response) => {
     })
 })
 
+app.get('/employee', async (request, response) => {
+    response.render('employee')
+})
+
 app.listen(port, () => {
     console.log(`Server is listening to ${port} `)
 })

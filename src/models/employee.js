@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 
 const employeeSchema = new mongoose.Schema({
-    firstName: String,
-    lastName: String,
-    surName: String,
-    position: String,
-    login: String,
-    password: String
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    surName: { type: String, required: true },
+    position: { type: String, required: true },
+    login: { type: String },
+    password: { type: String }
 })
 
 const employeeModel = mongoose.model('employee', employeeSchema)
