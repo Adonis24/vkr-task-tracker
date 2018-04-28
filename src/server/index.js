@@ -41,7 +41,16 @@ app.get('/employee', async (request, response) => {
     const employeeId = request.query.id
     const employee = await employeeRepository.getEmployee(employeeId)
 
-    response.render('employee', { employee: employee })
+    const plannedTasks = await taskRepository.getEmployeeTaskByStatus(employeeId, taskStatus.todo)
+    const inPorgressTasks = await taskRepository.getEmployeeTaskByStatus(employeeId, taskStatus.wip)
+    const finishedTasks = await taskRepository.getEmployeeTaskByStatus(employeeId, taskStatus.done)
+
+    response.render('employee', {
+        employee: employee,
+        plannedTasks: plannedTasks,
+        inProgressTasks: inPorgressTasks,
+        finishedTasks: finishedTasks
+    })
 })
 
 app.listen(port, () => {

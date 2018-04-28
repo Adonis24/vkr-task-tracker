@@ -37,21 +37,30 @@ const plannedTask = new Task({
     employeeId: support._id,
     title: 'Прогрев сайтов',
     description: 'preloadEnabled / Always Running / App Init для самопрогрева',
-    status: taskStatus.todo
+    status: taskStatus.todo,
+    creationDate: Date.parse((new Date).toUTCString()),
+    toInProgressStateDate: null,
+    doneDate: null
 });
 
 const inProgressTask = new Task({
     employeeId: engineer._id,
     title: 'Переехать на новые NGINX (nginx-ext-1/2)',
     description: 'Убрать все метрики из prometheus',
-    status: taskStatus.wip
+    status: taskStatus.todo,
+    creationDate: Date.parse((new Date).toUTCString()),
+    toInProgressStateDate: null,
+    doneDate: null
 });
 
 const finishedTask = new Task({
     employeeId: programmer._id,
     title: 'API для MessageService ',
     description: 'Appservice не должен иметь доступ к БД',
-    status: taskStatus.done
+    status: taskStatus.todo,
+    creationDate: Date.parse((new Date).toUTCString()),
+    toInProgressStateDate: null,
+    doneDate: null
 });
 
 async function dropCollections(callback) {

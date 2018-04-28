@@ -1,5 +1,6 @@
 const Task = require('../models/task')
 const Employee = require('../models/employee')
+const taskStatus = require('../resources/task-status')
 
 async function getTaskByStatus(status) {
     const tasks = await Task.find({ status: status })
@@ -7,6 +8,7 @@ async function getTaskByStatus(status) {
     const tasksWithEmployees = tasks.map(async (task) => {
         const employee = await Employee.findById(task.employeeId)
         return {
+            _id: task._id,
             title: task.title,
             description: task.description,
             status: task.status,
@@ -15,6 +17,10 @@ async function getTaskByStatus(status) {
     })
 
     return Promise.all(tasksWithEmployees)
+}
+
+async function getEmployeeTaskByStatus(employeeId, status) {
+    return await Task.find({ status: status, employeeId: employeeId })
 }
 
 async function addTask(task) {
@@ -28,16 +34,34 @@ async function addTask(task) {
     await newTask.save()
 }
 
-async function setTaskStatus(id, status) {
-    return await Task.findByIdAndUpdate(id, { status: status })
+async function setTaskStatusTodo(id) {
+    return await Task.findByIdAndUpdate(id, { status: taskStatus.todo })
+}
+
+async function setTaskStatusWip(id, statusDate) {
+    return await Task.findByIdAndUpdate(id, {
+        status: taskStatus.wip,
+        toInProgressStateDate: statusDate
+    })
+}
+
+async function setTaskStatusDone(id, statusDate) {
+    return await Task.findByIdAndUpdate(id, {
+        status: taskStatus.done,
+        doneDate: statusDate
+    })
 }
 
 async function removeTask(id) {
     return await Task.findByIdAndRemove(id)
 }
 
-
 module.exports.getTaskByStatus = getTaskByStatus
-module.exports.addTask = addTask
-module.exports.setTaskStatus = setTaskStatus
+module.exports.getEmployeeTaskByStatus = getEmployeeTaskByStatus
+
+module.exports.setTaskStatusTodo = setTaskStatusTodo
+module.exports.setTaskStatusWip = setTaskStatusWip
+module.exports.setTaskStatusDone = setTaskStatusDone
+
 module.exports.removeTask = removeTask
+module.exports.addTask = addTask

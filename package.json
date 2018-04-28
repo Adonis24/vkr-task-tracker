@@ -4,7 +4,8 @@
   "description": "Диплом",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server/index.js"
+    "start": "node src/server/index.js",
+    "drop": "node seed.js"
   },
   "repository": {
     "type": "git",

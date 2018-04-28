@@ -1,6 +1,7 @@
 const express = require('express')
 
 const taskRepository = require('../../repositories/tasks-repository')
+const taskStatus = require('../../resources/task-status')
 
 const router = express.Router()
 
@@ -8,7 +9,18 @@ router.get('/status', async (request, response) => {
     const taskId = request.query.id
     const status = request.query.status
 
-    await taskRepository.setTaskStatus(taskId, status)
+    switch (status) {
+        case taskStatus.todo: {
+            await taskRepository.setTaskStatusTodo(taskId)
+        } break
+        case taskStatus.wip: {
+            await taskRepository.setTaskStatusWip(taskId, Date.parse((new Date).toUTCString()))
+            break
+        }
+        case taskStatus.done: {
+            await taskRepository.setTaskStatusDone(taskId, Date.parse((new Date).toUTCString()))
+        }
+    }
 
     response.redirect('/')
 })
