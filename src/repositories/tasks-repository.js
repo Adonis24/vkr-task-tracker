@@ -27,7 +27,9 @@ async function addTask(task) {
     const newTask = new Task({
         title: task.title,
         description: task.description,
-        status: task.status
+        status: taskStatus.todo,
+        employeeId: task.employeeId,
+        creationDate: Date.parse((new Date).toUTCString())
     })
 
 

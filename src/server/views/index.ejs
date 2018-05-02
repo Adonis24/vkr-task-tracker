@@ -145,14 +145,15 @@
                                                         <textarea name="description" id="description" class="form-control" style="resize: none" name="message" rows="5" form="newTaskForm"
                                                             required></textarea>
                                                     </div>
+
                                                     <div class="form-group">
-                                                        <label for="status">Статус</label>
-                                                        <select name="status" id="status" class="form-control">
-                                                            <option value="todo">План</option>
-                                                            <option value="wip">В процессе</option>
-                                                            <option value="done">Готово</option>
-                                                        </select>
-                                                    </div>
+                                                            <label for="responsible">Ответственный</label>
+                                                            <select name="responsible" id="responsible" class="form-control">
+                                                                <%employees.forEach(employee => {%>
+                                                                    <option value="<%=employee._id%>"><%=employee.fullName%></option>
+                                                                <%})%>
+                                                            </select>
+                                                        </div>
                                                     <button type="submit" class="btn btn-primary">Добавить</button>
                                                 </form>
                                             </div>

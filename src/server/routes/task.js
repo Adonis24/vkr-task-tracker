@@ -38,7 +38,8 @@ router.post('/new', async (request, response) => {
     await taskRepository.addTask({
         title: request.body.title,
         description: request.body.description,
-        status: request.body.status
+        employeeId: request.body.responsible
+        
     })
 
     response.redirect('/')

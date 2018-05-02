@@ -1,4 +1,4 @@
-const employeeRepository = require('../repositories/empoloyeeRepository')
+const employeeRepository = require('../repositories/empoloyee-repository')
 const departmentRepository = require('../repositories/department-repository')
 const taskRepository = require('../repositories/tasks-repository')
 
@@ -18,6 +18,17 @@ async function getEmployee(id) {
     }
 }
 
+async function getEmployeeNameList() {
+    const employees = await employeeRepository.getEmployeeList()
+    const employeeNameList = employees.map(employee => {
+        return {
+            _id: employee._id,
+            fullName: `${employee.lastName} ${employee.firstName} ${employee.surName}`
+        }
+    })
+
+    return employeeNameList
+}
 
 async function getEmployeeTasks(id) {
     const plannedTasks = await taskRepository.getEmployeeTaskByStatus(id, taskStatus.todo)
@@ -34,3 +45,4 @@ async function getEmployeeTasks(id) {
 
 module.exports.getEmployee = getEmployee
 module.exports.getEmployeeTasks = getEmployeeTasks
+module.exports.getEmployeeNameList = getEmployeeNameList

@@ -30,7 +30,10 @@ app.get('/', async (request, response) => {
     const inPorgressTasks = await taskRepository.getTaskByStatus(taskStatus.wip)
     const finishedTasks = await taskRepository.getTaskByStatus(taskStatus.done)
 
+    const employees = await employeeService.getEmployeeNameList()
+    
     response.render('index', {
+        employees: employees,
         plannedTasks: plannedTasks,
         inProgressTasks: inPorgressTasks,
         finishedTasks: finishedTasks
@@ -39,10 +42,10 @@ app.get('/', async (request, response) => {
 
 app.get('/employee', async (request, response) => {
     const employeeId = request.query.id
-    
+
     const employee = await employeeService.getEmployee(employeeId)
     const employeeTasks = await employeeService.getEmployeeTasks(employeeId)
-    
+
     response.render('employee', {
         employee: employee,
         plannedTasks: employeeTasks.plannedTasks,
