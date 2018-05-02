@@ -35,13 +35,18 @@ async function addTask(task) {
 }
 
 async function setTaskStatusTodo(id) {
-    return await Task.findByIdAndUpdate(id, { status: taskStatus.todo })
+    return await Task.findByIdAndUpdate(id, {
+        status: taskStatus.todo,
+        toInProgressStateDate: null,
+        doneDate: null
+    })
 }
 
 async function setTaskStatusWip(id, statusDate) {
     return await Task.findByIdAndUpdate(id, {
         status: taskStatus.wip,
-        toInProgressStateDate: statusDate
+        toInProgressStateDate: statusDate,
+        doneDate: null
     })
 }
 

@@ -3,14 +3,20 @@ const mongoose = require('mongoose');
 const config = require('./config');
 const Task = require('./src/models/task');
 const Employee = require('./src/models/employee');
+const Department = require('./src/models/department')
 
 const taskStatus = require('./src/resources/task-status');
+
+const itDepartment = new Department({
+    name: 'Отдел разработки информационных система'
+})
 
 const programmer = new Employee({
     lastName: 'Горемыкин',
     firstName: 'Бронислав',
     surName: 'Филиппович',
     position: 'Программист',
+    departmentId: itDepartment._id,
     login: null,
     password: null
 });
@@ -20,6 +26,7 @@ const engineer = new Employee({
     firstName: 'Адам',
     surName: 'Афанасиевич',
     position: 'Системный администратор',
+    departmentId: itDepartment._id,
     login: null,
     password: null
 });
@@ -29,6 +36,7 @@ const support = new Employee({
     firstName: 'Вениамин',
     surName: 'Ефремович',
     position: 'Инженер тех. поддержки',
+    departmentId: itDepartment._id,
     login: null,
     password: null
 });
@@ -66,11 +74,13 @@ const finishedTask = new Task({
 async function dropCollections(callback) {
     await Task.remove({})
     await Employee.remove({})
+    await Department.remove({})
 
     callback()
 }
 
 async function setCollections(callback) {
+    await itDepartment.save()
     await inProgressTask.save()
     await finishedTask.save()
     await programmer.save()

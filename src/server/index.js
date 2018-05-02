@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 
 const config = require('../../config')
 const taskRepository = require('../repositories/tasks-repository')
-const employeeRepository = require('../repositories/empoloyeeRepository')
+const employeeService = require('../services/employee-service')
 const taskStatus = require('../resources/task-status')
 
 const task = require('./routes/task')
@@ -39,17 +39,15 @@ app.get('/', async (request, response) => {
 
 app.get('/employee', async (request, response) => {
     const employeeId = request.query.id
-    const employee = await employeeRepository.getEmployee(employeeId)
-
-    const plannedTasks = await taskRepository.getEmployeeTaskByStatus(employeeId, taskStatus.todo)
-    const inPorgressTasks = await taskRepository.getEmployeeTaskByStatus(employeeId, taskStatus.wip)
-    const finishedTasks = await taskRepository.getEmployeeTaskByStatus(employeeId, taskStatus.done)
-
+    
+    const employee = await employeeService.getEmployee(employeeId)
+    const employeeTasks = await employeeService.getEmployeeTasks(employeeId)
+    
     response.render('employee', {
         employee: employee,
-        plannedTasks: plannedTasks,
-        inProgressTasks: inPorgressTasks,
-        finishedTasks: finishedTasks
+        plannedTasks: employeeTasks.plannedTasks,
+        inProgressTasks: employeeTasks.inPorgressTasks,
+        finishedTasks: employeeTasks.finishedTasks
     })
 })
 
