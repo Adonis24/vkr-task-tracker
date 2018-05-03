@@ -30,6 +30,22 @@ async function getEmployeeNameList() {
     return employeeNameList
 }
 
+async function getEmployeeList() {
+    const employees = await employeeRepository.getEmployeeList()
+    const employeeNameList = employees.map(async (employee) => {
+        const employeeDepartment = await departmentRepository.getDepartment(employee.departmentId)
+
+        return {
+            _id: employee._id,
+            fullName: `${employee.lastName} ${employee.firstName} ${employee.surName}`,
+            position: employee.position,
+            department: employeeDepartment
+        }
+    })
+
+    return Promise.all(employeeNameList)
+}
+
 async function getEmployeeTasks(id) {
     const plannedTasks = await taskRepository.getEmployeeTaskByStatus(id, taskStatus.todo)
     const inPorgressTasks = await taskRepository.getEmployeeTaskByStatus(id, taskStatus.wip)
@@ -46,3 +62,4 @@ async function getEmployeeTasks(id) {
 module.exports.getEmployee = getEmployee
 module.exports.getEmployeeTasks = getEmployeeTasks
 module.exports.getEmployeeNameList = getEmployeeNameList
+module.exports.getEmployeeList = getEmployeeList

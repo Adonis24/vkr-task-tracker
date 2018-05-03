@@ -12,14 +12,14 @@
     <title>Space - Responsive Admin Dashboard Template</title>
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <link href="static/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="static/plugins/icomoon/style.css" rel="stylesheet">
-    <link href="static/plugins/uniform/css/default.css" rel="stylesheet" />
-    <link href="static/plugins/switchery/switchery.min.css" rel="stylesheet" />
+    <link href="/static/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/plugins/icomoon/style.css" rel="stylesheet">
+    <link href="/static/plugins/uniform/css/default.css" rel="stylesheet" />
+    <link href="/static/plugins/switchery/switchery.min.css" rel="stylesheet" />
 
-    <link href="static/css/space.min.css" rel="stylesheet">
-    <link href="static/css/custom.css" rel="stylesheet">
+    <link href="/static/css/space.min.css" rel="stylesheet">
+    <link href="/static/css/custom.css" rel="stylesheet">
 </head>
 
 <body>
@@ -36,22 +36,22 @@
                 <div class="page-sidebar-menu">
                     <ul class="accordion-menu">
                         <li>
-                            <a href="/">
+                            <a href="/employees/list">
                                 <i class="menu-icon icon-home4"></i>
-                                <span>Dashboard</span>
+                                <span>Сотрудники</span>
                             </a>
                         </li>
                         <li>
-                            <a href="email.html">
+                            <a href="/">
                                 <i class="menu-icon icon-inbox"></i>
-                                <span>Email</span>
+                                <span>Задачи</span>
                             </a>
                         </li>
                         <li class="menu-divider"></li>
                         <li>
                             <a href="/">
                                 <i class="menu-icon icon-help_outline"></i>
-                                <span>Documentation</span>
+                                <span>О работе</span>
                             </a>
                         </li>
                     </ul>
@@ -131,8 +131,8 @@
                                     <div class="panel-body user-profile-panel">
                                         <h4 class="text-center m-t-lg">
                                             <%=employee.lastName%>
-                                                <%=employee.firstName%>
-                                                <%=employee.surName%>
+                                            <%=employee.firstName%>
+                                            <%=employee.surName%>
                                         </h4>
                                         <p class="text-center">
                                             <%=employee.position%>
