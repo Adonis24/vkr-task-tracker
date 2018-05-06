@@ -9,7 +9,7 @@
     <meta name="keywords" content="admin,dashboard">
     <meta name="author" content="stacks">
 
-    <title>Space - Responsive Admin Dashboard Template</title>
+    <title>Система управления задачами - Responsive Admin Dashboard Template</title>
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link href="static/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -29,14 +29,14 @@
         <!-- Page Sidebar -->
         <div class="page-sidebar">
             <a class="logo-box" href="/">
-                <span>Space</span>
+                <span>Система управления задачами</span>
                 <i class="icon-close" id="sidebar-toggle-button-close"></i>
             </a>
             <div class="page-sidebar-inner">
                 <div class="page-sidebar-menu">
                     <ul class="accordion-menu">
                         <li>
-                            <a href="/employees">
+                            <a href="/employees/list">
                                 <i class="menu-icon icon-home4"></i>
                                 <span>Сотрудники</span>
                             </a>
@@ -73,7 +73,7 @@
                                     <i class="fa fa-bars"></i>
                                 </a>
                                 <a class="logo-box" href="/">
-                                    <span>Space</span>
+                                    <span>Система управления задачами</span>
                                 </a>
                             </div>
                         </div>
@@ -138,7 +138,7 @@
                                                 <form id="newTaskForm" method="POST" action="/task/new">
                                                     <div class="form-group">
                                                         <label for="title">Заголовок</label>
-                                                        <input type="title" class="form-control" id="exampleInputEmail1" name="title">
+                                                        <input type="title" class="form-control" id="exampleInputEmail1" name="title" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="description">Описание</label>
@@ -147,13 +147,15 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                            <label for="responsible">Ответственный</label>
-                                                            <select name="responsible" id="responsible" class="form-control">
-                                                                <%employees.forEach(employee => {%>
-                                                                    <option value="<%=employee._id%>"><%=employee.fullName%></option>
+                                                        <label for="responsible">Ответственный</label>
+                                                        <select name="responsible" id="responsible" class="form-control" required>
+                                                            <%employees.forEach(employee => {%>
+                                                                <option value="<%=employee._id%>">
+                                                                    <%=employee.fullName%>
+                                                                </option>
                                                                 <%})%>
-                                                            </select>
-                                                        </div>
+                                                        </select>
+                                                    </div>
                                                     <button type="submit" class="btn btn-primary">Добавить</button>
                                                 </form>
                                             </div>
@@ -194,7 +196,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="text-right" style="margin-bottom:2%; margin-right:2%">
-                                                                    <a class="btn btn-success" href="/emplpoyees/employee?id=<%=task.employee._id%>">
+                                                                    <a class="btn btn-success" href="/employees/employee?id=<%=task.employee._id%>">
                                                                         <%=task.employee.lastName%>
                                                                             <%=task.employee.firstName%>
                                                                     </a>
@@ -243,7 +245,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="text-right" style="margin-bottom:2%; margin-right:2%">
-                                                                    <a class="btn btn-success" href="/emplpoyees/employee?id=<%=task.employee._id%>">
+                                                                    <a class="btn btn-success" href="/employees/employee?id=<%=task.employee._id%>">
                                                                         <%=task.employee.lastName%>
                                                                             <%=task.employee.firstName%>
                                                                     </a>
@@ -294,7 +296,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="text-right" style="margin-bottom:2%; margin-right:3%">
-                                                                    <a class="btn btn-success" href="/emplpoyees/employee?id=<%=task.employee._id%>">
+                                                                    <a class="btn btn-success" href="/employees/employee?id=<%=task.employee._id%>">
                                                                         <%=task.employee.lastName%>
                                                                             <%=task.employee.firstName%>
                                                                     </a>

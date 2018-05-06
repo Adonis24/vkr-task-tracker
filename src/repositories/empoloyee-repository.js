@@ -5,7 +5,8 @@ async function addEmployee(employee) {
         firstName: employee.firstName,
         lastName: employee.lastName,
         surName: employee.surName,
-        position: employee.position
+        position: employee.position,
+        departmentId: employee.departmentId
     })
 
     return await newEmployee.save()
