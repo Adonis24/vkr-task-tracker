@@ -15,7 +15,7 @@ employeeRouter.get('/employee', async (request, response) => {
     const employee = await employeeService.getEmployee(employeeId)
     const employeeTasks = await employeeService.getEmployeeTasks(employeeId)
 
-    response.render('employee', {
+    response.render('employee/employee', {
         employee: employee,
         plannedTasks: employeeTasks.plannedTasks,
         inProgressTasks: employeeTasks.inPorgressTasks,
@@ -39,7 +39,7 @@ employeeRouter.get('/list', async (request, response) => {
     const employees = await employeeService.getEmployeeList()
     const departments = await departmentRepository.getDepartmentList()
 
-    response.render('employee-list', {
+    response.render('employee/list', {
         employees: employees,
         departments: departments
     })

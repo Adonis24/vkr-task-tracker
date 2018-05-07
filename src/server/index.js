@@ -11,6 +11,7 @@ const taskStatus = require('../resources/task-status')
 
 const task = require('./routes/task')
 const employee = require('./routes/employee')
+const department = require('./routes/department')
 
 const app = express()
 const port = process.env.PORT || 4000
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({
 
 app.use('/task', task)
 app.use('/employees', employee)
+app.use('/departments', department)
 
 app.get('/', async (request, response) => {
     const plannedTasks = await taskRepository.getTaskByStatus(taskStatus.todo)
@@ -43,18 +45,6 @@ app.get('/', async (request, response) => {
         inProgressTasks: inPorgressTasks,
         finishedTasks: finishedTasks
     })
-})
-
-app.get('/departments/list', async (request, response) => {
-    const departments = await departmentRepository.getDepartmentList()
-
-    response.render('department-list', { departments: departments })
-})
-
-app.post('/departments/new', async (request, response) => {
-    const departments = await departmentRepository.addDepartment(request.body.name)
-
-    response.redirect('/departments/list')
 })
 
 app.listen(port, () => {
