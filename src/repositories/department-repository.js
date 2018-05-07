@@ -8,5 +8,14 @@ async function getDepartmentList() {
     return await Department.find({})
 }
 
+async function addDepartment(name){
+    const newDepartment = new Department({
+        name: name
+    })
+
+    return await newDepartment.save()
+}
+
 module.exports.getDepartment = getDepartment
 module.exports.getDepartmentList = getDepartmentList
+module.exports.addDepartment = addDepartment

@@ -134,7 +134,7 @@
                 <div id="main-wrapper">
                     <div class="row">
                         <div class="panel-body">
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Новый сотрудник</button>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Новый отдел</button>
                             <br/>
                             <br/>
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -144,41 +144,16 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
-                                            <h4 class="modal-title" id="myModalLabel">Сотрудник</h4>
+                                            <h4 class="modal-title" id="myModalLabel">Отдел</h4>
                                         </div>
                                         <div class="modal-body">
                                             <div class="panel-body">
-                                                <form id="newTaskForm" method="POST" action="/employees/new">
+                                                <form id="newTaskForm" method="POST" action="/departments/new">
                                                     <div class="form-group">
-                                                        <label for="lastName">Фамилия</label>
-                                                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                                        <label for="name">Название</label>
+                                                        <input type="text" class="form-control" id="name" name="name" required>
                                                     </div>
 
-                                                    <div class="form-group">
-                                                        <label for="firstName">Имя</label>
-                                                        <input type="text" class="form-control" id="firstName" name="firstName" required>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="surName">Отчество</label>
-                                                        <input type="text" class="form-control" id="surName" name="surName" required>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="position">Должность</label>
-                                                        <input type="position" class="form-control" id="position" name="position" required>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="department">Отдел</label>
-                                                        <select name="department" id="department" class="form-control" required>
-                                                            <%departments.forEach(department => {%>
-                                                                <option value="<%=department._id%>">
-                                                                    <%=department.name%>
-                                                                </option>
-                                                                <%})%>
-                                                        </select>
-                                                    </div>
                                                     <button type="submit" class="btn btn-primary">Добавить</button>
                                                 </form>
                                             </div>
@@ -195,32 +170,20 @@
                                 <table id="example" class="display table" style="width: 100%; cellspacing: 0;">
                                     <thead>
                                         <tr>
-                                            <th>Ф.И.О.</th>
-                                            <th>Должность</th>
-                                            <th>Отдел</th>
+                                            <th>Название</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Ф.И.О.</th>
-                                            <th>Должность</th>
-                                            <th>Отдел</th>
+                                            <th>Название</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <%employees.forEach(employee => {%>
+                                        <%departments.forEach(department => {%>
                                             <tr>
                                                 <td>
-                                                    <a href="/employees/employee?id=<%=employee._id%>">
-                                                        <%=employee.fullName%>
+                                                    <%=department.name%>
                                                 </td>
-                                                <td>
-                                                    <%=employee.position%>
-                                                </td>
-                                                <td>
-                                                    <%=employee.department.name%>
-                                                </td>
-
                                             </tr>
                                             <%})%>
 

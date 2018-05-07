@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 
 const config = require('../../config')
 const taskRepository = require('../repositories/tasks-repository')
+const departmentRepository = require('../repositories/department-repository')
 const employeeService = require('../services/employee-service')
 const taskStatus = require('../resources/task-status')
 
@@ -35,13 +36,25 @@ app.get('/', async (request, response) => {
     const finishedTasks = await taskRepository.getTaskByStatus(taskStatus.done)
 
     const employees = await employeeService.getEmployeeNameList()
-    
+
     response.render('index', {
         employees: employees,
         plannedTasks: plannedTasks,
         inProgressTasks: inPorgressTasks,
         finishedTasks: finishedTasks
     })
+})
+
+app.get('/departments/list', async (request, response) => {
+    const departments = await departmentRepository.getDepartmentList()
+
+    response.render('department-list', { departments: departments })
+})
+
+app.post('/departments/new', async (request, response) => {
+    const departments = await departmentRepository.addDepartment(request.body.name)
+
+    response.redirect('/departments/list')
 })
 
 app.listen(port, () => {
