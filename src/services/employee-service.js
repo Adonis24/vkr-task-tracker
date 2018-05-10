@@ -1,3 +1,5 @@
+const bcryp = require('bcrypt')
+
 const employeeRepository = require('../repositories/empoloyee-repository')
 const departmentRepository = require('../repositories/department-repository')
 const taskRepository = require('../repositories/tasks-repository')
@@ -59,7 +61,45 @@ async function getEmployeeTasks(id) {
 
 }
 
+async function isEmployeeValid(login, passwrod) {
+    const employee = await employeeRepository.getEmployeeByLogin(login)
+
+    if (employee) {
+        const passwrodIsValid = bcryp.compareSync(passwrod, employee.password)
+        if (passwrodIsValid) {
+            if (employee.approved) {
+                return {
+                    status: true,
+                    message: 'Доступ разрешен'
+                }
+            } else {
+                return {
+                    status: true,
+                    message: 'Ваша учетная запись еще не прошла проверку'
+                }
+            }
+        } else {
+            return {
+                status: false,
+                message: 'Неверный пароль'
+            }
+        }
+    } else {
+        return {
+            status: false,
+            message: 'Сотрудника с такими данными не существует'
+        }
+    }
+}
+
+function isEmployeeAdmin(login) {
+    return login == 'root_admin'
+}
+
 module.exports.getEmployee = getEmployee
 module.exports.getEmployeeTasks = getEmployeeTasks
 module.exports.getEmployeeNameList = getEmployeeNameList
 module.exports.getEmployeeList = getEmployeeList
+
+module.exports.isEmployeeValid = isEmployeeValid
+module.exports.isEmployeeAdmin = isEmployeeAdmin

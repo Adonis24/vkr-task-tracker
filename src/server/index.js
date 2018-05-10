@@ -1,4 +1,5 @@
 const express = require('express')
+const session = require('express-session')
 const path = require('path')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
@@ -28,6 +29,12 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 
+app.use(session({
+    resave: true,
+    saveUninitialized: false,
+    secret: "workhard",
+}));
+
 app.use('/task', task)
 app.use('/employees', employee)
 app.use('/departments', department)
@@ -46,6 +53,28 @@ app.get('/', async (request, response) => {
         finishedTasks: finishedTasks
     })
 })
+
+
+app.get('/login', async (request, response) => {
+    response.render('login')
+})
+
+app.post('/login', async (request, response) => {
+    const login = request.body.login
+    const password = request.body.password
+
+    const employeeValidation = await employeeService.isEmployeeValid(login, password)
+
+    if (employeeValidation.status) {
+        request.session.login = login
+        request.session.isAdmin = employeeService.isEmployeeAdmin()
+
+        response.redirect('/')
+    } else {
+        response.redirect('/login')
+    }
+})
+
 
 app.listen(port, () => {
     console.log(`Server is listening to ${port} `)

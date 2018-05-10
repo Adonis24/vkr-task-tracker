@@ -7,7 +7,8 @@ const employeeSchema = new mongoose.Schema({
     position: { type: String, required: true },
     departmentId: { type: String, required: true },
     login: { type: String },
-    password: { type: String }
+    password: { type: String },
+    approved: { type: Boolean }
 })
 
 const employeeModel = mongoose.model('employee', employeeSchema)

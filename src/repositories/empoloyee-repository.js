@@ -16,10 +16,15 @@ async function getEmployee(id) {
     return await Employee.findById(id)
 }
 
-async function getEmployeeList(){
+async function getEmployeeByLogin(login) {
+    return await Employee.findOne({ login: login })
+}
+
+async function getEmployeeList() {
     return await Employee.find({})
 }
 
 module.exports.addEmployee = addEmployee
 module.exports.getEmployee = getEmployee
+module.exports.getEmployeeByLogin = getEmployeeByLogin
 module.exports.getEmployeeList = getEmployeeList

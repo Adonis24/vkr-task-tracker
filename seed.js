@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt')
 
 const config = require('./config');
 const Task = require('./src/models/task');
@@ -17,8 +18,9 @@ const programmer = new Employee({
     surName: 'Филиппович',
     position: 'Программист',
     departmentId: itDepartment._id,
-    login: null,
-    password: null
+    login: 'gbf',
+    password: bcrypt.hashSync('38ea0b9d', bcrypt.genSaltSync(10)),
+    approved: true
 });
 
 const engineer = new Employee({
@@ -27,8 +29,9 @@ const engineer = new Employee({
     surName: 'Афанасиевич',
     position: 'Системный администратор',
     departmentId: itDepartment._id,
-    login: null,
-    password: null
+    login: 'saa',
+    password: bcrypt.hashSync('38ea0b9d', bcrypt.genSaltSync(10)),
+    approved: true
 });
 
 const support = new Employee({
@@ -37,8 +40,20 @@ const support = new Employee({
     surName: 'Ефремович',
     position: 'Инженер тех. поддержки',
     departmentId: itDepartment._id,
-    login: null,
-    password: null
+    login: 'pve',
+    password: bcrypt.hashSync('38ea0b9d', bcrypt.genSaltSync(10)),
+    approved: true
+});
+
+const rootAdmin = new Employee({
+    lastName: 'root_admin',
+    firstName: 'root_admin',
+    surName: 'root_admin',
+    position: 'root_admin',
+    departmentId: itDepartment._id,
+    login: 'root_admin',
+    password: bcrypt.hashSync('38ea0b9d', bcrypt.genSaltSync(10)),
+    approved: true
 });
 
 const plannedTask = new Task({
@@ -86,6 +101,7 @@ async function setCollections(callback) {
     await programmer.save()
     await engineer.save()
     await support.save()
+    await rootAdmin.save()
     await plannedTask.save()
 
     callback()
