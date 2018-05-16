@@ -55,11 +55,16 @@ app.get('/', async (request, response) => {
 })
 
 
-app.get('/login', async (request, response) => {
-    response.render('login')
+app.get('/signin', async (request, response) => {
+    response.render('auth/signin')
 })
 
-app.post('/login', async (request, response) => {
+app.get('/signup', async (request, response) => {
+    response.render('auth/signup')
+})
+
+
+app.post('/signin', async (request, response) => {
     const login = request.body.login
     const password = request.body.password
 
@@ -71,7 +76,7 @@ app.post('/login', async (request, response) => {
 
         response.redirect('/')
     } else {
-        response.redirect('/login')
+        response.redirect('/signin')
     }
 })
 
