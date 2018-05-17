@@ -64,11 +64,34 @@ app.get('/signup', async (request, response) => {
 })
 
 
+app.post('/signup', async (request, response) => {
+    const login = request.body.login
+    const password = request.body.password
+
+    const isEmployeeExists = await employeeService.isEmployeeExists(login)
+
+    if (!isEmployeeExists) {
+        await employeeService.addNotApprovedEmployee({
+            firstName: request.body.name,
+            lastName: request.body.lastName,
+            surName: request.body.surName,
+            departmentId: request.body.department,
+            position: request.body.position,
+            login: request.body.login,
+            password: request.body.password
+        })
+
+        response.redirect('/')
+    } else {
+        response.redirect('/signin')
+    }
+})
+
 app.post('/signin', async (request, response) => {
     const login = request.body.login
     const password = request.body.password
 
-    const employeeValidation = await employeeService.isEmployeeValid(login, password)
+    const employeeValidation = await employeeService.validateEmployee(login, password)
 
     if (employeeValidation.status) {
         request.session.login = login

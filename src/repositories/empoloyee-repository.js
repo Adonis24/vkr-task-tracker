@@ -6,8 +6,13 @@ async function addEmployee(employee) {
         lastName: employee.lastName,
         surName: employee.surName,
         position: employee.position,
-        departmentId: employee.departmentId
+        departmentId: employee.departmentId,
+        login: employee.login,
+        password: employee.password,
+        approved: employee.approved
     })
+
+    console.log(newEmployee)
 
     return await newEmployee.save()
 }

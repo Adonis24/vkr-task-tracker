@@ -1,10 +1,25 @@
-const bcryp = require('bcrypt')
+const bcrypt = require('bcrypt')
 
 const employeeRepository = require('../repositories/empoloyee-repository')
 const departmentRepository = require('../repositories/department-repository')
 const taskRepository = require('../repositories/tasks-repository')
 
 const taskStatus = require('../resources/task-status')
+
+async function addNotApprovedEmployee(employee) {
+    const cryptedPassword = bcrypt.hashSync(employee.password, bcrypt.genSaltSync(10))
+
+    return await employeeRepository.addEmployee({
+        firstName: employee.firstName,
+        lastName: employee.lastName,
+        surName: employee.surName,
+        position: employee.position,
+        departmentId: employee.departmentId,
+        login: employee.login,
+        password: cryptedPassword,
+        approved: false
+    })
+}
 
 async function getEmployee(id) {
     const employee = await employeeRepository.getEmployee(id)
@@ -61,11 +76,11 @@ async function getEmployeeTasks(id) {
 
 }
 
-async function isEmployeeValid(login, passwrod) {
+async function validateEmployee(login, passwrod) {
     const employee = await employeeRepository.getEmployeeByLogin(login)
 
     if (employee) {
-        const passwrodIsValid = bcryp.compareSync(passwrod, employee.password)
+        const passwrodIsValid = bcrypt.compareSync(passwrod, employee.password)
         if (passwrodIsValid) {
             if (employee.approved) {
                 return {
@@ -96,10 +111,19 @@ function isEmployeeAdmin(login) {
     return login == 'root_admin'
 }
 
+async function isEmployeeExists(login) {
+    const existedEmployee = await employeeRepository.getEmployeeByLogin(login)
+
+    return existedEmployee != null
+}
+
+module.exports.addNotApprovedEmployee = addNotApprovedEmployee
+
 module.exports.getEmployee = getEmployee
 module.exports.getEmployeeTasks = getEmployeeTasks
 module.exports.getEmployeeNameList = getEmployeeNameList
 module.exports.getEmployeeList = getEmployeeList
 
-module.exports.isEmployeeValid = isEmployeeValid
+module.exports.validateEmployee = validateEmployee
 module.exports.isEmployeeAdmin = isEmployeeAdmin
+module.exports.isEmployeeExists = isEmployeeExists
