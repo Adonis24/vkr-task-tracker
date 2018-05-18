@@ -117,6 +117,13 @@ async function isEmployeeExists(login) {
     return existedEmployee != null
 }
 
+async function isEmployeeApproved(login) {
+    const employee = await employeeRepository.getEmployeeByLogin(login)
+
+    return employee.approved
+}
+
+
 module.exports.addNotApprovedEmployee = addNotApprovedEmployee
 
 module.exports.getEmployee = getEmployee
@@ -127,3 +134,4 @@ module.exports.getEmployeeList = getEmployeeList
 module.exports.validateEmployee = validateEmployee
 module.exports.isEmployeeAdmin = isEmployeeAdmin
 module.exports.isEmployeeExists = isEmployeeExists
+module.exports.isEmployeeApproved = isEmployeeApproved

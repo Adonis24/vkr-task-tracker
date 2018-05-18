@@ -60,7 +60,9 @@ app.get('/signin', async (request, response) => {
 })
 
 app.get('/signup', async (request, response) => {
-    response.render('auth/signup')
+    const departments = await departmentRepository.getDepartmentList()
+
+    response.render('auth/signup', { departments: departments })
 })
 
 
@@ -94,10 +96,16 @@ app.post('/signin', async (request, response) => {
     const employeeValidation = await employeeService.validateEmployee(login, password)
 
     if (employeeValidation.status) {
-        request.session.login = login
-        request.session.isAdmin = employeeService.isEmployeeAdmin()
+        const isEmployeeApproved = await employeeService.isEmployeeApproved(login)
 
-        response.redirect('/')
+        if (!isEmployeeApproved) {
+            response.redirect('/signin')
+        } else {
+            request.session.login = login
+            request.session.isAdmin = employeeService.isEmployeeAdmin()
+
+            response.redirect('/')
+        }
     } else {
         response.redirect('/signin')
     }
