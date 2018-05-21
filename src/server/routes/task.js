@@ -2,10 +2,11 @@ const express = require('express')
 
 const taskRepository = require('../../repositories/tasks-repository')
 const taskStatus = require('../../resources/task-status')
+const accessGranted = require('../auth-middleware').accessGranted
 
 const router = express.Router()
 
-router.get('/status', async (request, response) => {
+router.get('/status', accessGranted, async (request, response) => {
     const taskId = request.query.id
     const status = request.query.status
 
@@ -25,7 +26,7 @@ router.get('/status', async (request, response) => {
     response.redirect('/')
 })
 
-router.get('/remove', async (request, response) => {
+router.get('/remove', accessGranted, async (request, response) => {
     const taskId = request.query.id
 
     await taskRepository.removeTask(taskId)
@@ -34,7 +35,7 @@ router.get('/remove', async (request, response) => {
 })
 
 
-router.post('/new', async (request, response) => {
+router.post('/new', accessGranted, async (request, response) => {
     await taskRepository.addTask({
         title: request.body.title,
         description: request.body.description,

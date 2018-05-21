@@ -14,6 +14,8 @@ const task = require('./routes/task')
 const employee = require('./routes/employee')
 const department = require('./routes/department')
 
+const accessGranted = require('./auth-middleware').accessGranted
+
 const app = express()
 const port = process.env.PORT || 4000
 
@@ -39,7 +41,7 @@ app.use('/task', task)
 app.use('/employees', employee)
 app.use('/departments', department)
 
-app.get('/', async (request, response) => {
+app.get('/', accessGranted, async (request, response) => {
     const plannedTasks = await taskRepository.getTaskByStatus(taskStatus.todo)
     const inPorgressTasks = await taskRepository.getTaskByStatus(taskStatus.wip)
     const finishedTasks = await taskRepository.getTaskByStatus(taskStatus.done)
@@ -63,6 +65,12 @@ app.get('/signup', async (request, response) => {
     const departments = await departmentRepository.getDepartmentList()
 
     response.render('auth/signup', { departments: departments })
+})
+
+app.get('/logout', async (request, response) => {
+    request.session.destroy((err) => {
+        response.redirect('/')
+    })
 })
 
 
