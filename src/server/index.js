@@ -52,7 +52,8 @@ app.get('/', accessGranted, async (request, response) => {
         employees: employees,
         plannedTasks: plannedTasks,
         inProgressTasks: inPorgressTasks,
-        finishedTasks: finishedTasks
+        finishedTasks: finishedTasks,
+        isAdmin: request.session.isAdmin
     })
 })
 
@@ -110,7 +111,7 @@ app.post('/signin', async (request, response) => {
             response.redirect('/signin')
         } else {
             request.session.login = login
-            request.session.isAdmin = employeeService.isEmployeeAdmin()
+            request.session.isAdmin = employeeService.isEmployeeAdmin(login)
 
             response.redirect('/')
         }

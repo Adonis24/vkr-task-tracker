@@ -31,7 +31,8 @@ async function getEmployee(id) {
         lastName: employee.lastName,
         surName: employee.surName,
         position: employee.position,
-        department: employeeDepartment
+        department: employeeDepartment,
+        login: employee.login
     }
 }
 
@@ -50,17 +51,33 @@ async function getEmployeeNameList() {
 async function getEmployeeList() {
     const employees = await employeeRepository.getEmployeeList()
     const employeeNameList = employees.map(async (employee) => {
-        const employeeDepartment = await departmentRepository.getDepartment(employee.departmentId)
-
-        return {
-            _id: employee._id,
-            fullName: `${employee.lastName} ${employee.firstName} ${employee.surName}`,
-            position: employee.position,
-            department: employeeDepartment
-        }
+        return await getEmployeeViewModel(employee)
     })
 
     return Promise.all(employeeNameList)
+}
+
+async function getNotApprovedEmployeeList() {
+    let employees = await employeeRepository.getEmployeeList()
+    employees = employees.filter(employee => !employee.approved)
+
+    const employeeNameList = employees.map(async (employee) => {
+        return await getEmployeeViewModel(employee)
+    })
+
+    return Promise.all(employeeNameList)
+}
+
+
+async function getEmployeeViewModel(employee) {
+    const employeeDepartment = await departmentRepository.getDepartment(employee.departmentId)
+    return {
+        _id: employee._id,
+        fullName: `${employee.lastName} ${employee.firstName} ${employee.surName}`,
+        position: employee.position,
+        department: employeeDepartment,
+        login: employee.login
+    }
 }
 
 async function getEmployeeTasks(id) {
@@ -123,13 +140,19 @@ async function isEmployeeApproved(login) {
     return employee.approved
 }
 
+async function approveEmployee(employeeId) {
+    await employeeRepository.setApproved(employeeId, true)
+}
+
 
 module.exports.addNotApprovedEmployee = addNotApprovedEmployee
+module.exports.approveEmployee = approveEmployee
 
 module.exports.getEmployee = getEmployee
 module.exports.getEmployeeTasks = getEmployeeTasks
 module.exports.getEmployeeNameList = getEmployeeNameList
 module.exports.getEmployeeList = getEmployeeList
+module.exports.getNotApprovedEmployeeList = getNotApprovedEmployeeList
 
 module.exports.validateEmployee = validateEmployee
 module.exports.isEmployeeAdmin = isEmployeeAdmin

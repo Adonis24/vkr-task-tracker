@@ -20,8 +20,18 @@ employeeRouter.get('/employee', accessGranted, async (request, response) => {
         employee: employee,
         plannedTasks: employeeTasks.plannedTasks,
         inProgressTasks: employeeTasks.inPorgressTasks,
-        finishedTasks: employeeTasks.finishedTasks
+        finishedTasks: employeeTasks.finishedTasks,
+        isAdmin: request.session.isAdmin
     })
+})
+
+
+employeeRouter.get('/approve', accessGranted, async (request, response) => {
+    const employeeId = request.query.id
+
+    await employeeService.approveEmployee(employeeId)
+
+    response.redirect('employees/list/notapproved')
 })
 
 
@@ -31,7 +41,19 @@ employeeRouter.get('/list', accessGranted, async (request, response) => {
 
     response.render('employee/list', {
         employees: employees,
-        departments: departments
+        departments: departments,
+        isAdmin: request.session.isAdmin
+    })
+})
+
+employeeRouter.get('/list/notapproved', accessGranted, async (request, response) => {
+    const employees = await employeeService.getNotApprovedEmployeeList()
+    const departments = await departmentRepository.getDepartmentList()
+
+    response.render('employee/notapproved-list', {
+        employees: employees,
+        departments: departments,
+        isAdmin: request.session.isAdmin
     })
 })
 

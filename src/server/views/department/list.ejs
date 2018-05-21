@@ -57,6 +57,14 @@
                                 <span>Отделы</span>
                             </a>
                         </li>
+                        <%if(isAdmin) {%>
+                        <li>
+                            <a href="/employees/list/notapproved">
+                                <i class="fa fa-trello"></i>
+                                <span>Лист ожидания</span>
+                            </a>
+                        </li>
+                        <%}%>
 
                         <li class="menu-divider"></li>
                         <li>

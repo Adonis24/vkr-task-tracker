@@ -202,6 +202,7 @@
                                             <th>Ф.И.О.</th>
                                             <th>Должность</th>
                                             <th>Отдел</th>
+                                            <th>&nbsp</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -209,6 +210,7 @@
                                             <th>Ф.И.О.</th>
                                             <th>Должность</th>
                                             <th>Отдел</th>
+                                            <th>&nbsp</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -224,7 +226,10 @@
                                                 <td>
                                                     <%=employee.department.name%>
                                                 </td>
-                                                
+                                                <td>
+                                                    <a class="btn btn-default" href="/employees/approve?id=<%=employee._id%>">Подтвердить</a>
+                                                </td>
+
                                             </tr>
                                             <%})%>
 

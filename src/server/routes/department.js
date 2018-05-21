@@ -8,7 +8,7 @@ const departmentRouter = new Router()
 departmentRouter.get('/list', accessGranted, async (request, response) => {
     const departments = await departmentRepository.getDepartmentList()
 
-    response.render('department/list', { departments: departments })
+    response.render('department/list', { departments: departments, isAdmin: request.session.isAdmin })
 })
 
 departmentRouter.post('/new', accessGranted, async (request, response) => {

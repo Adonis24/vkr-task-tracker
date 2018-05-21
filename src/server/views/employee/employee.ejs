@@ -47,6 +47,14 @@
                                 <span>Задачи</span>
                             </a>
                         </li>
+                        <%if(isAdmin) {%>
+                        <li>
+                            <a href="/employees/list/notapproved">
+                                <i class="fa fa-trello"></i>
+                                <span>Лист ожидания</span>
+                            </a>
+                        </li>
+                        <%}%>
                         <li class="menu-divider"></li>
                         <li>
                             <a href="/">
@@ -146,7 +154,7 @@
                                             <li>
                                                 <p>
                                                     <i class="fa fa-paper-plane-o m-r-xs"></i>
-                                                    <a href="#">example@mail.com</a>
+                                                    <a href="#"><%=employee.login%></a>
                                                 </p>
                                             </li>
                                         </ul>

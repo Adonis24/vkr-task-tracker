@@ -29,7 +29,14 @@ async function getEmployeeList() {
     return await Employee.find({ login: { $ne: 'root_admin' } })
 }
 
+async function setApproved(id, value) {
+    await Employee.findByIdAndUpdate(id, {
+        approved: value
+    })
+}
+
 module.exports.addEmployee = addEmployee
 module.exports.getEmployee = getEmployee
 module.exports.getEmployeeByLogin = getEmployeeByLogin
 module.exports.getEmployeeList = getEmployeeList
+module.exports.setApproved = setApproved
