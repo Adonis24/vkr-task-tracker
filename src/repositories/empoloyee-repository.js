@@ -26,7 +26,7 @@ async function getEmployeeByLogin(login) {
 }
 
 async function getEmployeeList() {
-    return await Employee.find({})
+    return await Employee.find({ login: { $ne: 'root_admin' } })
 }
 
 module.exports.addEmployee = addEmployee
