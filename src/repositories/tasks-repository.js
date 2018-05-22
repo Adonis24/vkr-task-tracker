@@ -12,7 +12,9 @@ async function getTaskByStatus(status) {
             title: task.title,
             description: task.description,
             status: task.status,
-            employee: employee
+            employee: employee,
+            creationDate: task.creationDate,
+            doneDate: task.doneDate
         }
     })
 

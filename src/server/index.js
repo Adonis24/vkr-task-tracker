@@ -8,6 +8,7 @@ const config = require('../../config')
 const taskRepository = require('../repositories/tasks-repository')
 const departmentRepository = require('../repositories/department-repository')
 const employeeService = require('../services/employee-service')
+const taskService = require('../services/task-service')
 const taskStatus = require('../resources/task-status')
 
 const task = require('./routes/task')
@@ -44,7 +45,8 @@ app.use('/departments', department)
 app.get('/', accessGranted, async (request, response) => {
     const plannedTasks = await taskRepository.getTaskByStatus(taskStatus.todo)
     const inPorgressTasks = await taskRepository.getTaskByStatus(taskStatus.wip)
-    const finishedTasks = await taskRepository.getTaskByStatus(taskStatus.done)
+    const finishedTasks = await taskService.getFinishedTasks()
+    console.log(finishedTasks[0])
 
     const employees = await employeeService.getEmployeeNameList()
 
@@ -55,6 +57,11 @@ app.get('/', accessGranted, async (request, response) => {
         finishedTasks: finishedTasks,
         isAdmin: request.session.isAdmin
     })
+})
+
+app.get('/analitic', async (request, response) => {
+    const statistic = await taskService.getStatistic()
+    response.render('analitic', { isAdmin: false, statistic: statistic })
 })
 
 

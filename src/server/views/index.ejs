@@ -213,7 +213,8 @@
                                                                     <a class="btn btn-success" href="/employees/employee?id=<%=task.employee._id%>">
                                                                         <%=task.employee.lastName%>
                                                                             <%=task.employee.firstName%>
-                                                                    </a>
+                                                                    </a> 
+                                                                   
                                                                     <a class="btn btn-default" href="/task/status?id=<%=task._id%>&status=wip">
                                                                         <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
                                                                     </a>
@@ -306,7 +307,10 @@
                                                                 </div>
                                                                 <div id="1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne1">
                                                                     <div class="panel-body">
-                                                                        <%=task.description%>
+                                                                        <%=task.description%><br>
+                                                                        <hr>
+                                                                        Завершено <%=task.doneDate%> <br> 
+                                                                        Потрачено часов: <%=task.excecutionTime%> 
                                                                     </div>
                                                                 </div>
                                                                 <div class="text-right" style="margin-bottom:2%; margin-right:3%">
@@ -314,12 +318,14 @@
                                                                         <%=task.employee.lastName%>
                                                                             <%=task.employee.firstName%>
                                                                     </a>
+                                                       
                                                                     <a class="btn btn-default" href="/task/status?id=<%=task._id%>&status=wip">
                                                                         <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                                                                     </a>
                                                                     <a class="btn btn-danger" href="/task/remove?id=<%=task._id%>">
                                                                         <i class="fa fa-remove" aria-hidden="true"></i>
                                                                     </a>
+                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>

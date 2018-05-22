@@ -61,7 +61,7 @@ const plannedTask = new Task({
     title: 'Прогрев сайтов',
     description: 'preloadEnabled / Always Running / App Init для самопрогрева',
     status: taskStatus.todo,
-    creationDate: Date.parse((new Date).toUTCString()),
+    creationDate: Date.parse((new Date(2018, 4, 20, 8, 30)).toUTCString()),
     toInProgressStateDate: null,
     doneDate: null
 });
@@ -71,7 +71,7 @@ const inProgressTask = new Task({
     title: 'Переехать на новые NGINX (nginx-ext-1/2)',
     description: 'Убрать все метрики из prometheus',
     status: taskStatus.todo,
-    creationDate: Date.parse((new Date).toUTCString()),
+    creationDate: Date.parse((new Date(2018, 4, 21, 9, 30)).toUTCString()),
     toInProgressStateDate: null,
     doneDate: null
 });
@@ -81,7 +81,7 @@ const finishedTask = new Task({
     title: 'API для MessageService ',
     description: 'Appservice не должен иметь доступ к БД',
     status: taskStatus.todo,
-    creationDate: Date.parse((new Date).toUTCString()),
+    creationDate: Date.parse((new Date(2018, 4, 19, 7, 30)).toUTCString()),
     toInProgressStateDate: null,
     doneDate: null
 });

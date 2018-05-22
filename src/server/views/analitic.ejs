@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive Admin Dashboard Template">
+    <meta name="keywords" content="admin,dashboard">
+    <meta name="author" content="stacks">
+
+    <title>Система управления задачами</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="/static/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/plugins/icomoon/style.css" rel="stylesheet">
+    <link href="/static/plugins/uniform/css/default.css" rel="stylesheet"/>
+    <link href="/static/plugins/switchery/switchery.min.css" rel="stylesheet"/>
+    <link href="/static/plugins/nvd3/nv.d3.min.css" rel="stylesheet">  
+  
+    <!-- Theme Styles -->
+    <link href="/static/css/space.min.css" rel="stylesheet">
+    <link href="/static/css/custom.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- Page Sidebar -->
+        <div class="page-sidebar">
+            <a class="logo-box" href="/">
+                <span>Система управления задачами</span>
+                <i class="icon-close" id="sidebar-toggle-button-close"></i>
+            </a>
+            <div class="page-sidebar-inner">
+                <div class="page-sidebar-menu">
+                    <ul class="accordion-menu">
+                        <li>
+                            <a href="/">
+                                <i class="fa fa-tasks"></i>
+                                <span>Задачи</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/employees/list">
+                                <i class="fa fa-id-card"></i>
+                                <span>Сотрудники</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/departments/list">
+                                <i class="fa fa-trello"></i>
+                                <span>Отделы</span>
+                            </a>
+                        </li>
+                        <%if(isAdmin) {%>
+                            <li>
+                                <a href="/employees/list/notapproved">
+                                    <i class="fa fa-trello"></i>
+                                    <span>Лист ожидания</span>
+                                </a>
+                            </li>
+                            <%}%>
+                                <li class="menu-divider"></li>
+                                <li>
+                                    <a href="/">
+                                        <i class="menu-icon icon-help_outline"></i>
+                                        <span>О работе</span>
+                                    </a>
+                                </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Sidebar -->
+
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <div class="logo-sm">
+                                <a href="javascript:void(0)" id="sidebar-toggle-button">
+                                    <i class="fa fa-bars"></i>
+                                </a>
+                                <a class="logo-box" href="/">
+                                    <span>Система управления задачами</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="javascript:void(0)" id="collapsed-sidebar-toggle-button">
+                                        <i class="fa fa-bars"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" id="toggle-fullscreen">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown user-dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <img src="http://via.placeholder.com/36x36" alt="" class="img-circle">
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="#">Profile</a>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <a href="/logout">Выход</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </div>
+            <!-- /Page Header -->
+            <!-- Page Inner -->
+            <div class="page-inner">
+                <div class="page-title">
+                </div>
+                <div id="main-wrapper">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-white stats-widget">
+                                <div class="panel-body">
+                                    <div class="pull-left">
+                                        <span class="stats-number"><%=statistic.averageExcecutionTime%></span>
+                                        <p class="stats-info">Среднее время</p>
+                                    </div>
+                                    <div class="pull-right">
+                                        <i class="fa fa-tasks"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-white stats-widget">
+                                <div class="panel-body">
+                                    <div class="pull-left">
+                                        <span class="stats-number"><%=statistic.plannedTasks%></span>
+                                        <p class="stats-info">Запланировано</p>
+                                    </div>
+                                    <div class="pull-right">
+                                        <i class="icon-arrow_upward stats-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-white stats-widget">
+                                <div class="panel-body">
+                                    <div class="pull-left">
+                                        <span class="stats-number"><%=statistic.inProgressTasks%></span>
+                                        <p class="stats-info">В процессе</p>
+                                    </div>
+                                    <div class="pull-right">
+                                        <i class="fa fa-superpowers"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-white stats-widget">
+                                <div class="panel-body">
+                                    <div class="pull-left">
+                                        <span class="stats-number"><%=statistic.finishedTasks%></span>
+                                        <p class="stats-info">Готово</p>
+                                    </div>
+                                    <div class="pull-right">
+                                        <i class="icon-arrow_upward stats-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-white">
+                                <div class="panel-heading clearfix">
+                                    <h4 class="panel-title">Задачи</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="task-list">
+                                        <div class="task-item">
+                                            <span class="task-name">Запланировано</span>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%=statistic.plannedTasksPercent%>%;">
+                                                    <span class="sr-only">80% Complete</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="task-item">
+                                            <span class="task-name">В процессе</span>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%=statistic.inProgressTasksPercent%>%;">
+                                                    <span class="sr-only">10% Complete</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="task-item">
+                                            <span class="task-name">Готово</span>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%=statistic.finishedTasksPercent%>%;">
+                                                    <span class="sr-only">80% Complete</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-white">
+                                <div class="panel-heading clearfix">
+                                    <h4 class="panel-title">Прогресс по задачам</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="browser-stats">
+                                        <ul class="list-unstyled">
+                                            <%statistic.employees.forEach(employee=>{%>
+                                            <li>
+                                                <%=employee.fullName%>
+                                                <div class="text-success pull-right"> <%=employee.finishedPercent%>%
+                                                    <i class="fa fa-level-up"></i>
+                                                </div>
+                                            </li>
+                                            <%})%>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-footer">
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="/static/plugins/jquery/jquery-3.1.0.min.js"></script>
+    <script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/static/plugins/uniform/js/jquery.uniform.standalone.js"></script>
+    <script src="/static/plugins/switchery/switchery.min.js"></script>
+    <script src="/static/plugins/d3/d3.min.js"></script>
+    <script src="/static/plugins/nvd3/nv.d3.min.js"></script>
+    <script src="/static/plugins/flot/jquery.flot.min.js"></script>
+    <script src="/static/plugins/flot/jquery.flot.time.min.js"></script>
+    <script src="/static/plugins/flot/jquery.flot.symbol.min.js"></script>
+    <script src="/static/plugins/flot/jquery.flot.resize.min.js"></script>
+    <script src="/static/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="/static/plugins/flot/jquery.flot.pie.min.js"></script>
+    <script src="/static/plugins/chartjs/chart.min.js"></script>
+    <script src="/static/js/space.min.js"></script>
+    <script src="/static/js/pages/dashboard.js"></script>
+</body>
+
+</html>
