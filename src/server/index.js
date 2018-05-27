@@ -59,7 +59,7 @@ app.get('/', accessGranted, async (request, response) => {
     })
 })
 
-app.get('/analitic', async (request, response) => {
+app.get('/analitic', accessGranted, async (request, response) => {
     const statistic = await taskService.getStatistic()
     response.render('analitic', { isAdmin: false, statistic: statistic })
 })

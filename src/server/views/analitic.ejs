@@ -55,21 +55,20 @@
                                 <span>Отделы</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="/analitic">
+                                <i class="fa fa-search"></i>
+                                <span>Аналитика</span>
+                            </a>
+                        </li>
                         <%if(isAdmin) {%>
-                            <li>
-                                <a href="/employees/list/notapproved">
-                                    <i class="fa fa-trello"></i>
-                                    <span>Лист ожидания</span>
-                                </a>
-                            </li>
-                            <%}%>
-                                <li class="menu-divider"></li>
-                                <li>
-                                    <a href="/">
-                                        <i class="menu-icon icon-help_outline"></i>
-                                        <span>О работе</span>
-                                    </a>
-                                </li>
+                        <li>
+                            <a href="/employees/list/notapproved">
+                                <i class="fa fa-hand-stop-o"></i>
+                                <span>Лист ожидания</span>
+                            </a>
+                        </li>
+                        <%}%>
                     </ul>
                 </div>
             </div>
@@ -115,10 +114,6 @@
                                         <img src="http://via.placeholder.com/36x36" alt="" class="img-circle">
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">Profile</a>
-                                        </li>
-                                        <li role="separator" class="divider"></li>
                                         <li>
                                             <a href="/logout">Выход</a>
                                         </li>
